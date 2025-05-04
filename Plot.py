@@ -34,7 +34,7 @@ EL_r_medium = []
 EL_r_low = []
 EL_r_ecg = []
 
-################
+################ Inspiration Left
 
 file_path = current_directory / 'files_orig' / 'IL.csv'
 
@@ -56,70 +56,121 @@ IL_data_medium = np.array(IL_r_medium)
 IL_data_low = np.array(IL_r_low)
 IL_data_ecg = np.array(IL_r_ecg)
 
-################
+################ Построение ILH
 
 fig, ax = plt.subplots()
 plt.plot(IL_rep_points, IL_data_high)
 #plt.plot(IL_rep_points, IL_data_ecg)
-ax.set_xlim(750, 2275)
+ax.set_xlim(3300, 4730)
 ax.set_ylim(-60, 100)
 plt.title('PRCG Insp Left High')
 plt.xlabel('Reports')
 plt.ylabel('Z, mOhm')
 plt.show()
 
-x_min, x_max = 750, 2275
+x_min, x_max = 3300, 4730
 y_min, y_max = -60, 100
 
-
-#new_reports = np.array(IL_rep_points[x_min : x_max])
 new_reports = IL_rep_points[x_min : x_max]
 new_data = IL_data_high[x_min : x_max]
-
-print(IL_data_high.size)
 
 data_to_save_csv = {
     'отчет' : new_reports,
     'значение' : new_data
 }
-print(new_reports.size , new_data.size)
 file_path = current_directory / 'orig_cut' / 'ILH_Cut.csv'
 
 df = pd.DataFrame(data_to_save_csv)
 df.to_csv(file_path, index = False)
 df = pd.read_csv(file_path, skiprows = 1)
 df.to_csv(file_path, index = False)
-"""
+
+################ Построение ILM
+
 fig, ax = plt.subplots()
 plt.plot(IL_rep_points, IL_data_medium)
-ax.set_xlim(750, 2200)
-ax.set_ylim(-120, 120)
+ax.set_xlim(3300, 4760)
+ax.set_ylim(-60, 120)
 plt.title('PRCG Insp Left Middle')
 plt.xlabel('Reports')
 plt.ylabel('Z, mOhm')
 plt.show()
 
+x_min, x_max = 3300, 4760
+
+new_reports = IL_rep_points[x_min : x_max]
+new_data = IL_data_medium[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'ILM_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Построение ILL
+
 fig, ax = plt.subplots()
 plt.plot(IL_rep_points, IL_data_low)
-#ax.set_xlim(75, 1335)
+ax.set_xlim(3370, 4820)
+ax.set_ylim(-50, 60)
 plt.title('PRCG Insp Left Low')
-plt.xlabel('ReportS')
+plt.xlabel('Reports')
 plt.ylabel('Z, mOhm')
 plt.show()
 
+x_min, x_max = 3370, 4820
+
+new_reports = IL_rep_points[x_min : x_max]
+new_data = IL_data_low[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'ILL_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Построение IL ECG
+
 fig, ax = plt.subplots()
 plt.plot(IL_rep_points, IL_data_ecg)
-#ax.set_xlim(250, 1600)
+ax.set_xlim(3050, 4520)
 plt.title('ECG Insp Left')
 plt.xlabel('Reports')
 plt.ylabel('Ampl, mcV')
 plt.show()
 
-################
+x_min, x_max = 3050, 4520
 
-file_path = current_directory / 'files_csv' / 'InsRightPHMLEcg.csv'
+new_reports = IL_rep_points[x_min : x_max]
+new_data = IL_data_ecg[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'ILECG_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Inspiration Right
+
+file_path = current_directory / 'files_orig' / 'IR.csv'
+
 with open(file_path, 'r') as datafile:
-    plotting = csv.reader(datafile, delimiter=',')
+    plotting = csv.reader(datafile, delimiter = ',')
     for ROWS in plotting:
         array = ROWS[0].split(',')
         IR_report.append(float(array[0]))
@@ -136,49 +187,119 @@ IR_data_medium = np.array(IR_r_medium)
 IR_data_low = np.array(IR_r_low)
 IR_data_ecg = np.array(IR_r_ecg)
 
-################
+################ Построение IRH
 
 fig, ax = plt.subplots()
 plt.plot(IR_rep_points, IR_data_high)
-ax.set_xlim(337, 1572)
-ax.set_ylim(-60, 50)
+ax.set_xlim(3300, 4760)
+ax.set_ylim(-20, 60)
 plt.title('PRCG Insp Right High')
 plt.xlabel('Reports')
 plt.ylabel('Z, mOhm')
 plt.show()
 
+x_min, x_max = 3300, 4760
+
+new_reports = IR_rep_points[x_min : x_max]
+new_data = IR_data_high[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'IRH_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Построение IRM
+
 fig, ax = plt.subplots()
 plt.plot(IR_rep_points, IR_data_medium)
-ax.set_xlim(270, 1600)
-ax.set_ylim(-60, 50)
+ax.set_xlim(4310, 5800)
+ax.set_ylim(-100, 150)
 plt.title('PRCG Insp Right Middle')
 plt.xlabel('Reports')
 plt.ylabel('Z, mOhm')
 plt.show()
 
+x_min, x_max = 4310, 5800
+
+new_reports = IR_rep_points[x_min : x_max]
+new_data = IR_data_medium[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'IRM_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Построение IRL
+
 fig, ax = plt.subplots()
 plt.plot(IR_rep_points, IR_data_low)
-ax.set_xlim(322, 1600)
-ax.set_ylim(-60, 50)
+ax.set_xlim(3860, 5120)
+ax.set_ylim(-40, 60)
 plt.title('PRCG Insp Right Low')
 plt.xlabel('Reports')
 plt.ylabel('Z, mOhm')
 plt.show()
 
+x_min, x_max = 3860, 5130
+
+new_reports = IR_rep_points[x_min : x_max]
+new_data = IR_data_low[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'IRL_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Построение IR ECG
+
 fig, ax = plt.subplots()
 plt.plot(IR_rep_points, IR_data_ecg)
-ax.set_xlim(190, 1400)
+ax.set_xlim(2700, 4060)
 plt.title('ECG Insp Right')
 plt.xlabel('Reports')
 plt.ylabel('Ampl, mcV')
 plt.show()
 
-################
+x_min, x_max = 2700, 4060
 
-file_path = current_directory / 'files_csv' / 'ExpRightPHMLEcg.csv'
+new_reports = IR_rep_points[x_min : x_max]
+new_data = IR_data_ecg[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'IRECG_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Expiration Right
+
+file_path = current_directory / 'files_orig' / 'ER.csv'
+
 with open(file_path, 'r') as datafile:
-    plotting = csv.reader(datafile, delimiter=',')
-
+    plotting = csv.reader(datafile, delimiter = ',')
     for ROWS in plotting:
         array = ROWS[0].split(',')
         ER_report.append(float(array[0]))
@@ -195,50 +316,120 @@ ER_data_medium = np.array(ER_r_medium)
 ER_data_low = np.array(ER_r_low)
 ER_data_ecg = np.array(ER_r_ecg)
 
-################
+################ Построение ERH
 
 fig, ax = plt.subplots()
 plt.plot(ER_rep_points, ER_data_high)
-ax.set_xlim(115, 1200)
-ax.set_ylim(-40, 50)
+ax.set_xlim(3820, 5110)
+ax.set_ylim(-40, 40)
 plt.title('PRCG Exp Right High')
 plt.xlabel('Reports')
 plt.ylabel('Z, mOhm')
 plt.show()
 
+x_min, x_max = 3820, 5110
+
+new_reports = ER_rep_points[x_min : x_max]
+new_data = ER_data_high[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'ERH_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Построение ERM
+
 fig, ax = plt.subplots()
 plt.plot(ER_rep_points, ER_data_medium)
-ax.set_xlim(139, 1302)
-ax.set_ylim(-15, 15)
+ax.set_xlim(3000, 4230)
+ax.set_ylim(-60, 80)
 plt.title('PRCG Exp Right Middle')
 plt.xlabel('Reports')
 plt.ylabel('Z, mOhm')
 plt.show()
 
+x_min, x_max = 3000, 4230
+
+new_reports = ER_rep_points[x_min : x_max]
+new_data = ER_data_medium[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'ERM_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Построение ERL
+
 fig, ax = plt.subplots()
 plt.plot(ER_rep_points, ER_data_low)
-ax.set_xlim(156, 1312)
-ax.set_ylim(-30, 30)
+ax.set_xlim(3160, 4380)
+ax.set_ylim(-60, 80)
 plt.title('PRCG Exp Right Low')
 plt.xlabel('Reports')
 plt.ylabel('Z, mOhm')
 plt.show()
 
+x_min, x_max = 3160, 4380
+
+new_reports = ER_rep_points[x_min : x_max]
+new_data = ER_data_low[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'ERL_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Построение ER ECG
+
 fig, ax = plt.subplots()
 plt.plot(ER_rep_points, ER_data_ecg)
-ax.set_xlim(300, 1500)
+ax.set_xlim(2450, 3650)
+ax.set_ylim(-400, 1000)
 plt.title('ECG Exp Right')
 plt.xlabel('Reports')
 plt.ylabel('Ampl, mcV')
 plt.show()
 
-###############
+x_min, x_max = 2450, 3650
 
+new_reports = ER_rep_points[x_min : x_max]
+new_data = ER_data_ecg[x_min : x_max]
 
-file_path = current_directory / 'files_csv' / 'ExpLeftPHMLEcg.csv'
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'ERECG_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Expiration Left
+
+file_path = current_directory / 'files_orig' / 'EL.csv'
+
 with open(file_path, 'r') as datafile:
-    plotting = csv.reader(datafile, delimiter=',')
-
+    plotting = csv.reader(datafile, delimiter = ',')
     for ROWS in plotting:
         array = ROWS[0].split(',')
         EL_report.append(float(array[0]))
@@ -255,40 +446,109 @@ EL_data_medium = np.array(EL_r_medium)
 EL_data_low = np.array(EL_r_low)
 EL_data_ecg = np.array(EL_r_ecg)
 
-################
+################ Построение ELH
 
 fig, ax = plt.subplots()
 plt.plot(EL_rep_points, EL_data_high)
-ax.set_xlim(276, 1445)
-ax.set_ylim(-60, 60)
+ax.set_xlim(3950, 5120)
+ax.set_ylim(-100, 120)
 plt.title('PRCG Exp Left High')
 plt.xlabel('Reports')
 plt.ylabel('Z, mOhm')
 plt.show()
 
+x_min, x_max = 3950, 5120
+
+new_reports = EL_rep_points[x_min : x_max]
+new_data = EL_data_high[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'ELH_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Построение ELM
+
 fig, ax = plt.subplots()
 plt.plot(EL_rep_points, EL_data_medium)
-ax.set_xlim(396, 1621)
-ax.set_ylim(-30, 25)
+ax.set_xlim(3520, 4710)
+ax.set_ylim(-60, 180)
 plt.title('PRCG Exp Left Middle')
 plt.xlabel('Reports')
 plt.ylabel('Z, mOhm')
 plt.show()
 
+x_min, x_max = 3520, 4710
+
+new_reports = EL_rep_points[x_min : x_max]
+new_data = EL_data_medium[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'ELM_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Построение ELL
+
 fig, ax = plt.subplots()
 plt.plot(EL_rep_points, EL_data_low)
-ax.set_xlim(278, 1326)
-ax.set_ylim(-35, 35)
+ax.set_xlim(3400, 4540)
+ax.set_ylim(-50, 50)
 plt.title('PRCG Exp Left Low')
 plt.xlabel('Reports')
 plt.ylabel('Z, mOhm')
 plt.show()
 
+x_min, x_max = 3400, 4540
+
+new_reports = EL_rep_points[x_min : x_max]
+new_data = EL_data_low[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'ERL_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
+
+################ Построение EL ECG
+
 fig, ax = plt.subplots()
 plt.plot(EL_rep_points, EL_data_ecg)
-ax.set_xlim(300, 1450)
-plt.title('ECG Exp Low')
+ax.set_xlim(3430, 4610)
+plt.title('ECG Exp Left')
 plt.xlabel('Reports')
 plt.ylabel('Ampl, mcV')
 plt.show()
-"""
+
+x_min, x_max = 3430, 4610
+
+new_reports = EL_rep_points[x_min : x_max]
+new_data = EL_data_ecg[x_min : x_max]
+
+data_to_save_csv = {
+    'отчет' : new_reports,
+    'значение' : new_data
+}
+file_path = current_directory / 'orig_cut' / 'ELECG_Cut.csv'
+
+df = pd.DataFrame(data_to_save_csv)
+df.to_csv(file_path, index = False)
+df = pd.read_csv(file_path, skiprows = 1)
+df.to_csv(file_path, index = False)
