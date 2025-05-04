@@ -71,13 +71,18 @@ plt.show()
 x_min, x_max = 750, 2275
 y_min, y_max = -60, 100
 
+
+#new_reports = np.array(IL_rep_points[x_min : x_max])
 new_reports = IL_rep_points[x_min : x_max]
-new_data = IL_data_high[y_min : y_max]
+new_data = IL_data_high[x_min : x_max]
+
+print(IL_data_high.size)
 
 data_to_save_csv = {
     'отчет' : new_reports,
     'значение' : new_data
 }
+print(new_reports.size , new_data.size)
 file_path = current_directory / 'orig_cut' / 'ILH_Cut.csv'
 
 df = pd.DataFrame(data_to_save_csv)
